@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  pz_db:
+    image: 'bitnami/postgresql:latest'
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRESQL_PASSWORD=password
+      - POSTGRESQL_USERNAME=username
+      - POSTGRESQL_DATABASE=pz_db
+
