@@ -65,8 +65,8 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
-          username: root
-          key: ${{ secrets.KEY }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
           script: |
             echo ${{ secrets.PAT }} | docker login -u ${{ github.actor }} --password-stdin ghcr.io
             docker stop posledni-zvoneni
