@@ -48,8 +48,8 @@ jobs:
           context: .
           builder: ${{ steps.buildx.outputs.name }}
           tags: |
-            ghcr.io/rosenbergm/posledni-zvoneni/posledni-zvoneni:latest
-            ghcr.io/rosenbergm/posledni-zvoneni/posledni-zvoneni:${{ github.sha }}
+            ghcr.io/rosenbergm/posledni-zvoneni/pz:latest
+            ghcr.io/rosenbergm/posledni-zvoneni/pz:${{ github.sha }}
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
@@ -71,7 +71,7 @@ jobs:
             echo ${{ secrets.GITHUB_TOKEN }} | docker login -u ${{ github.actor }} --password-stdin ghcr.io
             docker stop posledni-zvoneni
             docker rm -v posledni-zvoneni
-            docker pull ghcr.io/rosenbergm/posledni-zvoneni/posledni-zvoneni:${{ github.sha }}
-            docker run -p "127.0.0.1:4000:4000/tcp" --privileged --name posledni-zvoneni -e "DATABASE_URL=${{ env.DATABASE_URL }}" -e "SECRET_KEY_BASE=${{ env.SECRET_KEY_BASE }}" -d ghcr.io/rosenbergm/posledni-zvoneni/posledni-zvoneni:${{ github.sha }} || exit 1
+            docker pull ghcr.io/rosenbergm/posledni-zvoneni/pz:${{ github.sha }}
+            docker run -p "127.0.0.1:4000:4000/tcp" --privileged --name posledni-zvoneni -e "DATABASE_URL=${{ env.DATABASE_URL }}" -e "SECRET_KEY_BASE=${{ env.SECRET_KEY_BASE }}" -d ghcr.io/rosenbergm/posledni-zvoneni/pz:${{ github.sha }} || exit 1
             docker start posledni-zvoneni
             exit
