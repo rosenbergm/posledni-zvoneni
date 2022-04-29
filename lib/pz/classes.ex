@@ -21,5 +21,6 @@ defmodule PZ.Classes do
         points: class.transfers |> Enum.map(& &1.amount) |> Enum.sum()
       }
     end)
+    |> Enum.sort_by(& &1.points)
   end
 end

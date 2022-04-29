@@ -10,6 +10,7 @@ env:
   MIX_ENV: prod
   DATABASE_URL: ${{ secrets.DATABASE_URL }}
   SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}
+  ONDRA_TOKEN: ${{ secrets.ONDRA_TOKEN }}
 
 jobs:
   build:
@@ -72,6 +73,6 @@ jobs:
             docker stop posledni-zvoneni
             docker rm -v posledni-zvoneni
             docker pull ghcr.io/rosenbergm/posledni-zvoneni/pz:${{ github.sha }}
-            docker run -p "127.0.0.1:4000:4000/tcp" --privileged --name posledni-zvoneni -e "DATABASE_URL=${{ env.DATABASE_URL }}" -e "SECRET_KEY_BASE=${{ env.SECRET_KEY_BASE }}" -d ghcr.io/rosenbergm/posledni-zvoneni/pz:${{ github.sha }} || exit 1
+            docker run -p "127.0.0.1:4000:4000/tcp" --privileged --name posledni-zvoneni -e "ONDRA_TOKEN=${{ env.ONDRA_TOKEN }}" -e "DATABASE_URL=${{ env.DATABASE_URL }}" -e "SECRET_KEY_BASE=${{ env.SECRET_KEY_BASE }}" -d ghcr.io/rosenbergm/posledni-zvoneni/pz:${{ github.sha }} || exit 1
             docker start posledni-zvoneni
             exit
