@@ -4,7 +4,7 @@ defmodule PZWeb.Router do
   pipeline :api do
     plug :accepts, ["json"]
 
-    plug Corsica, origins: "*", allow_methods: :all, allow_headers: :all
+    plug Corsica, origins: "*", allow_methods: :all, allow_headers: :all, allow_credentials: true
   end
 
   scope "/api", PZWeb do
