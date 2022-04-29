@@ -45,6 +45,6 @@ defmodule PZWeb.Endpoint do
   plug Plug.Head
   plug Plug.Session, @session_options
 
-  plug PZWeb.CORS
+  # plug PZWeb.CORS
   plug PZWeb.Router
 end
