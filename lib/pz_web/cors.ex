@@ -18,7 +18,7 @@ defmodule PZWeb.CORS do
     defp defaults do
       [
         origins: "*",
-        allow_methods: ["PUT", "PATCH", "DELETE"],
+        allow_methods: ["POST", "PUT", "PATCH", "DELETE"],
         allow_headers: [],
         # Corsica default is false, we use true
         allow_credentials: true,
